@@ -1,0 +1,132 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: black
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color:rgb(52, 65, 104);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+.menu{
+  position: relative;
+  width: 250px;
+  height:100vh;
+  z-index: 1;
+  top: 46px; 
+ 
+}
+
+.avatar{
+  margin-top: 50px;
+  margin-right:50px;
+}
+
+.row{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  top:80px;
+  right: 0;
+  left: 250px;
+}
+
+.card{
+  background-color:#8faed5;
+  
+}
+
+.col{
+  outline-color:#0e233d ;
+}
+
+.ava,
+.badge{
+  position:absolute;
+  left:9vw;
+  top:3vw;
+}
+.user{
+  opacity: 0.6;
+}
+
+.user:hover{
+   opacity: 1;
+   border-color: aliceblue;
+}
+
+.card:hover{
+  transform: scale(1.1);
+  transition: transform .2s;
+  
+}
+
+
+ @media screen and (max-width: 768px) {
+  
+  .ava,
+  .badge {
+    margin-top: 1vw; /* Adjust size for smaller screens */
+    margin-right: 5vw; /* Adjust size for smaller screens */
+    left: 1vw; /* Adjust size for smaller screens */
+    top: 2vh; /* Adjust size for smaller screens */
+    display:none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+ 
+  .ava,
+  .badge {
+    margin-top: 1vw; /* Adjust size for even smaller screens */
+    margin-right: 1vw; /* Adjust size for even smaller screens */
+    left: 1vw; /* Adjust size for even smaller screens */
+    top: 1vh;
+    display: none; /* Adjust size for even smaller screens */
+  }
+}
+
+.pagin{
+  justify-content: center;
+  display: flex;
+  align-items: flex-end; /* Align items to the bottom */
+  position: fixed; /* Use fixed position to keep it at the bottom */
+  width: 100%; /* Full width */
+  bottom: 0; /* Stick to the bottom */
+  background-color: #8faed5; 
+  padding: 10px; 
+  z-index: 1000; 
+}
+
+.switch-container{
+  display: flex;
+  flex-direction: column;
+  top:10px;
+  left:20px;
+  z-index: 1;
+  
+}
+
+.table{
+  position: absolute;
+  display: block;
+  width: 500px;
+  top:300px;
+  right:310px;
+  background-color:#0e233d;
+}
+
+
+ 
+
