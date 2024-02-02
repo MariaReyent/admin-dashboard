@@ -1,14 +1,32 @@
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
+import { useReducer, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthData } from "../auth/AuthWrapper";
 
 function Login() {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const navigate = useNavigate();
+  const { login } = AuthData();
+  const [formData, setFormData] = useReducer(
+    (formData, newItem) => {
+      return { ...formData, ...newItem };
+    },
+    { userName: "", password: "" }
+  );
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const doLogin = async () => {
+    try {
+      await login(formData.userName, formData.password);
+      localStorage.setItem('userName', JSON.stringify(formData.userName))
+      navigate("/private");
+    } catch (error) {
+      setErrorMessage(error);
+    }
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+
   return (
     <Form
+      className="form"
       name="basic"
       labelCol={{
         span: 8,
@@ -22,13 +40,14 @@ function Login() {
       initialValues={{
         remember: true,
       }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       autoComplete="off"
+      onFinish={doLogin}
     >
       <Form.Item
         label="Username"
-        name="username"
+        name="userName"
+        value={formData.userName}
+        onChange={(e) => setFormData({ userName: e.target.value })}
         rules={[
           {
             required: true,
@@ -42,6 +61,8 @@ function Login() {
       <Form.Item
         label="Password"
         name="password"
+        value={formData.password}
+        onChange={(e) => setFormData({ password: e.target.value })}
         rules={[
           {
             required: true,
@@ -53,17 +74,6 @@ function Login() {
       </Form.Item>
 
       <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item
         wrapperCol={{
           offset: 8,
           span: 16,
@@ -72,6 +82,7 @@ function Login() {
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
+        {errorMessage ? <div className="error">{errorMessage}</div> : null}
       </Form.Item>
     </Form>
   );

@@ -2,9 +2,11 @@ import { Layout, Flex, Space, Switch } from "antd";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const { Header } = Layout;
+  const navigate = useNavigate();
 
   const headerStyle = {
     display: "flex",
@@ -33,7 +35,9 @@ function Header() {
 
   const onChange = (checked) => {
     setDarkTheme(checked);
-    document.body.style.backgroundColor = checked ? "rgb(52, 65, 104)" : "lightgray";
+    document.body.style.backgroundColor = checked
+      ? "rgb(52, 65, 104)"
+      : "lightgray";
     console.log(`switch to ${checked}`);
   };
 
@@ -41,7 +45,14 @@ function Header() {
     <Flex gap="middle" wrap="wrap">
       <Layout>
         <Header style={headerStyle}>
-          <Avatar size={60} icon={<UserOutlined />} className="user" />
+          <Avatar
+            size={60}
+            icon={<UserOutlined />}
+            className="user"
+            onClick={() => navigate("/private") }
+            
+          />
+
           <div style={textStyle}>Creator Dashboard</div>
           <Space>
             <Switch

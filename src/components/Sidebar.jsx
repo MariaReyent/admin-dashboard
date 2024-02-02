@@ -1,6 +1,7 @@
 // import "antd/dist/antd.css";
 import { Input, Menu, Space } from "antd";
-import { Switch } from "antd";
+import Followers from "./Followers.jsx";
+import Statistics from "./Statistics.jsx";
 import {
   HomeFilled,
   UserOutlined,
@@ -16,8 +17,11 @@ import {
   RedEnvelopeOutlined,
 } from "@ant-design/icons/lib/icons";
 
+import { useNavigate } from "react-router-dom";
+
 function Sidebar() {
-  
+  const navigate = useNavigate();
+
   return (
     <Space>
       <Menu
@@ -30,7 +34,12 @@ function Sidebar() {
             label: <Input.Search placeholder="Search..."></Input.Search>,
             key: "search",
           },
-          { label: "Home", key: "home", icon: <HomeFilled></HomeFilled> },
+          {
+            label: "Home",
+            key: "home",
+            icon: <HomeFilled></HomeFilled>,
+            onClick: () => navigate("/"),
+          },
           {
             label: "Followers",
             key: "followers",
@@ -58,6 +67,7 @@ function Sidebar() {
             key: "user",
             type: "group",
             icon: <UserOutlined></UserOutlined>,
+           
             children: [
               {
                 label: "Edit Profile",
@@ -111,7 +121,6 @@ function Sidebar() {
           },
         ]}
       ></Menu>
-     
     </Space>
   );
 }

@@ -128,5 +128,12 @@ h1 {
 }
 
 
+.form{
+  display: inline-block;
+  margin-left: 100px;
+  text-align: left;
+  margin-top: 90px;
+}
+
  
 

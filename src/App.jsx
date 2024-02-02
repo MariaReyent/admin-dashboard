@@ -1,20 +1,11 @@
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import Statistics from "./components/Statistics";
-import Pagin from "./components/Pagin";
-import Followers from "./components/Followers";
-import TableUser from "./components/Table";
+import { BrowserRouter } from "react-router-dom";
+import { AuthWrapper } from "./auth/AuthWrapper";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Sidebar />
-      <Statistics />
-      <Followers />
-      <TableUser/>
-      <Pagin />
-    </>
+    <BrowserRouter>
+      <AuthWrapper />
+    </BrowserRouter>
   );
 }
 
