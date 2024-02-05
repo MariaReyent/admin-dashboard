@@ -1,12 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import { RenderRoutes } from "../structure/RenderNavigation";
+import PropTypes from "prop-types";
 
 const AuthContext = createContext();
 export const AuthData = () => useContext(AuthContext);
 
-export const AuthWrapper = () => {
+export const AuthWrapper = ({ children }) => {
   const [user, setUser] = useState({ name: "", isAuthenticated: false });
 
   const navigation = useNavigate();
@@ -23,21 +23,23 @@ export const AuthWrapper = () => {
   };
 
   const logout = () => {
-    setUser({ ...user, isAuthenticated: false });
+    setUser({ ...user, name:"",  isAuthenticated: false });
   };
 
   useEffect(() => {
     if (!user.isAuthenticated) {
       navigation("/login");
-    } 
+    }
   }, [navigation, user]);
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
-      <>
-        <Header />
-        <RenderRoutes />
-      </>
+      <Header />
+      {children}
     </AuthContext.Provider>
   );
+};
+
+AuthWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
 };

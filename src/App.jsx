@@ -1,11 +1,15 @@
-import { BrowserRouter } from "react-router-dom";
+
 import { AuthWrapper } from "./auth/AuthWrapper";
+import AppRoutes from "./structure/AppRoutes";
 
 function App() {
   return (
-    <BrowserRouter>
-      <AuthWrapper />
-    </BrowserRouter>
+   
+     <AuthWrapper>
+       <AppRoutes />
+     </AuthWrapper>
+     
+   
   );
 }
 

@@ -17,7 +17,7 @@ function Login() {
   const doLogin = async () => {
     try {
       await login(formData.userName, formData.password);
-      localStorage.setItem('userName', JSON.stringify(formData.userName))
+     
       navigate("/private");
     } catch (error) {
       setErrorMessage(error);

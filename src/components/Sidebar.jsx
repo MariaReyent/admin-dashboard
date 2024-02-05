@@ -18,9 +18,12 @@ import {
 } from "@ant-design/icons/lib/icons";
 
 import { useNavigate } from "react-router-dom";
+import { AuthData } from "../auth/AuthWrapper.jsx";
 
 function Sidebar() {
   const navigate = useNavigate();
+  const {logout} = AuthData();
+
 
   return (
     <Space>
@@ -44,6 +47,7 @@ function Sidebar() {
             label: "Followers",
             key: "followers",
             icon: <EyeOutlined></EyeOutlined>,
+            
           },
           {
             label: "Dashboard",
@@ -118,6 +122,7 @@ function Sidebar() {
             key: "exit",
             danger: true,
             icon: <CloseOutlined></CloseOutlined>,
+            onClick:() => {logout()}
           },
         ]}
       ></Menu>

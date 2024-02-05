@@ -1,12 +1,14 @@
-import { Layout, Flex, Space, Switch } from "antd";
+import { Layout, Flex, Space, Switch, Typography  } from "antd";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthData } from "../auth/AuthWrapper";
 
 function Header() {
   const { Header } = Layout;
   const navigate = useNavigate();
+  const {user} = AuthData();
 
   const headerStyle = {
     display: "flex",
@@ -49,10 +51,9 @@ function Header() {
             size={60}
             icon={<UserOutlined />}
             className="user"
-            onClick={() => navigate("/private") }
-            
+            onClick={() => navigate("/private")}
           />
-
+           <Typography.Text style={{ marginLeft: '8px', color: "white" }}>{user.isAuthenticated ? user.name : "User" }</Typography.Text>
           <div style={textStyle}>Creator Dashboard</div>
           <Space>
             <Switch
